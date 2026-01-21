@@ -1,0 +1,79 @@
+                                                                              Day-4
+1.Create a shell script file and add shebang line.
+Vi anil.sh
+After open the file first line we have to check user which is used for code
+#! /bin/bash means it is  script runs using bash shell
+Like other are there c shell, korn shell, bourne shell, z shell
+#! /bin/bash
+
+2.Write scripts for printing system information.
+we can use this below command and get some information of the system which means hostname, os information, sytem uptime, and disk free of the system
+#! /bin/bash
+echo "Hostname: $(hostname)"
+echo "os info: $(uname -a)"
+echo "uptime: $(uptime)"
+echo "Disk usage: $(df -h)"
+Hostname: anil-VMware-Virtual-Platform
+os info: Linux anil-VMware-Virtual-Platform 6.14.0-36-generic #36~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Oct 15 15:45:17 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+uptime:  16:24:35 up 21 min,  1 user,  load average: 0.06, 0.43, 0.35
+Disk usage: Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           387M  2.0M  385M   1% /run
+/dev/sda2        20G   14G  4.8G  75% /
+tmpfs           1.9G     0  1.9G   0% /dev/shm
+tmpfs           5.0M  8.0K  5.0M   1% /run/lock
+tmpfs           387M  124K  387M   1% /run/user/1000
+/dev/sr0         96M   96M     0 100% /media/anil/CDROM
+/dev/sr1        6.0G  6.0G     0 100% /media/anil/Ubuntu 24.04.3 LTS amd64
+
+3.Use variables, conditionals, loops in scripts.
+In this script I can use the variable “NAME” and then if condition in this condition statement file is exist it print the if part or  else part will be display 
+I have used For loop condition  to display the numbers
+#! /bin/bash
+
+NAME="anil"
+echo "username $NAME"
+
+if [ -f /etc/passwd ]; then
+   echo "File exists"
+else
+   echo "File is not exist"
+fi
+
+for i in 1 2 3
+do 
+  echo "number: $i"
+done
+
+./anil.sh
+username anil
+File exists
+number: 1
+number: 2
+number: 3
+
+4.Automate log cleanup or backup tasks.
+#! /bin/bash
+
+find /var/log -type f -mtime +7 -delete 
+tar -cvzf backup.tar /home/anil/Documents
+
+
+
+5.Make script executable and run it.
+We have check the permission of the file , if execute permission is not then give execute permission for the script use the below command
+Chmod +x file name or chmod 777 filename
+ chmod +x anil.sh
+ ll anil.sh
+-rwxrwxr-x 1 anil anil 121 Jan 21 16:15 anil.sh*
+./anil.sh
+
+6.Redirect output to files.
+We can use > to redirect the output   to file
+>> to redirect the output to append the existing the input file
+
+ echo $PWD >putta.txt
+ cat putta.txt
+/home/anil
+
+
+
